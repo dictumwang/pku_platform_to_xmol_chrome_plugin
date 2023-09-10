@@ -1,0 +1,45 @@
+{
+  "name": "PKU_Platform_to_Xmol",
+  "manifest_version": 3,
+  "version": "2.0",
+  "description": "北大试剂平台-Xmol关联插件",
+  "icons": {
+    "16": "smartlab.png",
+    "48": "smartlab.png",
+    "128": "smartlab.png"
+  },
+  "permissions": [
+    "webRequest"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://reagent.pku.edu.cn/*"
+      ],
+      "js": [
+        "jquery.min.js",
+        "pku-platform-utils.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://www.x-mol.com/group/*/iv*"
+      ],
+      "js": [
+        "jquery.min.js",
+        "x-mol-utils.js"
+      ],
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "pku-platform-utils.js"
+      ],
+      "matches": [
+        "https://reagent.pku.edu.cn/*"
+      ]
+    }
+  ]
+}
