@@ -22,6 +22,7 @@ $(window).bind("load", function () {
                 $('input[name=category]').val(getQueryString('产品分类'));
                 $('input[name=code]').val(getQueryString('货号'));
                 $('input[name=price]').val(getQueryString('单价'));
+                $('input[name=location]').val(getQueryString('username')+" 暂存");
                 setTimeout(function (){
                     $('input[name=nameZh]').val(getQueryString('中文品名'));
                     $('input[name=nameEn]').val(getQueryString('英文品名'));

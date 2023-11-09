@@ -1,18 +1,18 @@
 function load_plugin() {
     console.log(location.hash);
     if (location.hash == '#/personal/list?query=vueshop%E6%88%91%E7%9A%84%E8%AE%A2%E5%8D%95p') {
-        var e_tr;
-        var p = setInterval(function () {
-            e_tr = $('div.vueshop我的订单list table.el-table__body tr');
-            if (e_tr.length != 0) {
-                clearInterval(p);
-                for (var i = 0; i < e_tr.length; i++) {
-                    var e_link = $(e_tr[i]).find('a').attr('href');
-                    var link_re = /http:\/\/reagent\.pku\.edu\.cn\/#\/product\/detail\?id=(\d*)/.exec(e_link);
-                    $(e_tr[i]).find('td.el-table_1_column_10').append($("<div class='cell el-tooltip' style='width: 68px;'><a size='mini' class='el-link el-link--default is-underline' style='color:#94070a' href='javascript:void(0);' onclick=\"window.open('https://reagent.pku.edu.cn/#/product/detail?id=" + link_re[1] + "&in_storage=1')\">入库</a></div>"));
-                }
-            }
-        }, 1000);
+        // var e_tr;
+        // var p = setInterval(function () {
+        //     e_tr = $('div.vueshop我的订单list table.el-table__body tr');
+        //     if (e_tr.length != 0) {
+        //         clearInterval(p);
+        //         for (var i = 0; i < e_tr.length; i++) {
+        //             var e_link = $(e_tr[i]).find('a').attr('href');
+        //             var link_re = /http:\/\/reagent\.pku\.edu\.cn\/#\/product\/detail\?id=(\d*)/.exec(e_link);
+        //             $(e_tr[i]).find('td.el-table_1_column_10').append($("<div class='cell el-tooltip' style='width: 68px;'><a size='mini' class='el-link el-link--default is-underline' style='color:#94070a' href='javascript:void(0);' onclick=\"window.open('https://reagent.pku.edu.cn/#/product/detail?id=" + link_re[1] + "&in_storage=1')\">入库</a></div>"));
+        //         }
+        //     }
+        // }, 1000);
     } else if (/#\/product\/detail\?id=(\d*).*/.test(location.hash)) {
         var load_div = setInterval(function (){
             var div_info = $('div.info');
@@ -30,6 +30,7 @@ function load_plugin() {
             var e_link_re = /#\/product\/detail\?id=(\d*).*/.exec(location.hash);
             $.post('https://reagent.pku.edu.cn/Jpost', 'query=jk%E4%BA%A7%E5%93%81%E8%AF%A6%E6%83%85&%E4%BA%A7%E5%93%81id=' + e_link_re[1], function (e_item_data) {
                 var item_data = JSON.parse(e_item_data).data[0];
+                item_data.username = $("div.username").text().trim();
                 var tempForm = document.createElement("form");
                 tempForm.method = "get";
                 tempForm.action = 'https://www.x-mol.com/group/leixggroup/iv';
